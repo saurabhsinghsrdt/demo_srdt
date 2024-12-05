@@ -78,14 +78,12 @@ const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
         </div>
       </div>
 
-      {/* Animated ViewCard Popup */}
       <div
         className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50
-              transition-all duration-300 ease-in-out ${viewProduct ? "w-full h-full scale-100" : "w-0 h-0 scale-75"
+              transition-all duration-300 ease-in-out transform ${viewProduct
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-75 pointer-events-none"
           }`}
-        style={{
-          overflow: viewProduct ? "visible" : "hidden",
-        }}
       >
         {viewProduct && (
           <ViewCard
@@ -94,6 +92,8 @@ const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
           />
         )}
       </div>
+
+
 
     </div>
   );
