@@ -35,22 +35,22 @@ const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
       {/* Product List */}
       <div className="flex flex-wrap justify-center gap-4">
         <div
-          key={product.id}
+          key={product?.id}
           className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl"
         >
           <img
-            src={product.thumbnail}
-            alt={product.brand}
+            src={product?.thumbnail}
+            alt={product?.brand}
             className="w-full h-32 object-cover rounded-lg mb-4"
           />
           <h3 className="text-xl font-semibold">
-            {product.brand || "No Name"}
+            {product?.brand || "No Name"}
           </h3>
-          <p className="text-gray-500">${product.price}</p>
+          <p className="text-gray-500">${product?.price}</p>
           <div className="flex flex-col gap-5">
             {addToCard === 1 ? (
               <button
-                onClick={() => handleRemoveFromCart(product.id)}
+                onClick={() => handleRemoveFromCart(product?.id)}
                 className="w-40 h-12 bg-black text-white rounded-full hover:bg-blue-600"
               >
                 Remove
@@ -79,19 +79,22 @@ const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
       </div>
 
       {/* Animated ViewCard Popup */}
-      {viewProduct && (
-        <div
-          className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50
-                      transition-all duration-300 ease-in-out ${
-                        viewProduct ? "opacity-100 scale-100" : "opacity-0 scale-75"
-                      }`}
-        >
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50
+              transition-all duration-300 ease-in-out ${viewProduct ? "w-full h-full scale-100" : "w-0 h-0 scale-75"
+          }`}
+        style={{
+          overflow: viewProduct ? "visible" : "hidden",
+        }}
+      >
+        {viewProduct && (
           <ViewCard
             product={productDetails}
             closePopup={() => setViewProduct(false)}
           />
-        </div>
-      )}
+        )}
+      </div>
+
     </div>
   );
 };

@@ -34,7 +34,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
           {product?.description && (
             <div className="text-sm text-gray-700 mt-4">
               <h3 className="font-medium text-gray-800">Description:</h3>
-              <p>{product.description}</p>
+              <p>{product?.description}</p>
             </div>
           )}
         </div>
