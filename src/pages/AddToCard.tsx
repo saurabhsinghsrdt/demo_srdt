@@ -19,7 +19,7 @@ const AddToCard = () => {
           <h2 className='mb-4'>Total: </h2>
           <h2>${getTotalPrice()}</h2>
         </div>
-        <div className="flex gap-5 flex-wrap">
+        <div className="flex gap-5 flex-wrap justify-center">
           {cartItems.length > 0 ? (
             cartItems.map((item:any) => (
                 <ShoppingCart product={item} addToCard={1}/>
@@ -30,8 +30,8 @@ const AddToCard = () => {
         </div>
       </div>
       <div className="mt-4 flex justify-between">
-          <span>Total:</span>
-          <span>${getTotalPrice()}</span>
+          <h2 className="text-2xl font-semibold mb-4">Total:</h2>
+          <h2 className="text-2xl font-semibold mb-4">${getTotalPrice()}</h2>
         </div>
     </div>
   )

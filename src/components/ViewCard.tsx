@@ -1,32 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ShoppingCart from "./ShoppingCart";
 
 const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
   product,
   closePopup,
 }) => {
-  const [view, setView] = useState<boolean>(false);
-
-  const updateViewPopup = () => {
-    const isTogglerVisible = window.innerWidth < 992; // Adjust the width as per your breakpoint
-    setView(isTogglerVisible ? false : true);
-  };
-
-  useEffect(() => {
-    // Set initial state based on screen size
-    updateViewPopup();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", updateViewPopup);
-
-    // Cleanup on component unmount
-    return () => {
-      window.removeEventListener("resize", updateViewPopup);
-    };
-  }, []);
-
-  console.log(product, "tttttttttttttttttttt");
-
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md z-50"
@@ -34,9 +12,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
     >
       {/* Popup Container */}
       <div
-        className={`bg-white w-full max-w-lg sm:max-w-xl h-auto sm:h-auto max-h-[80%] sm:max-h-[90%] sm:rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 ease-out ${
-          view ? "scale-100 opacity-100" : "scale-75 opacity-100"
-        }`}
+        className="bg-white w-full max-w-lg sm:max-w-xl h-auto sm:h-auto max-h-[80%] sm:max-h-[90%] sm:rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 ease-out sm:scale-100 sm:opacity-100 scale-75 opacity-100"
         onClick={(e) => e.stopPropagation()} // Prevent click inside from closing
       >
         {/* Header Section */}
@@ -53,7 +29,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
         {/* Content Section */}
         <div className="p-6 overflow-y-auto max-h-[60vh]">
           <ShoppingCart product={product} addToCard={3} />
-          
+
           {/* Description Section */}
           {product?.description && (
             <div className="text-sm text-gray-700 mt-4">
