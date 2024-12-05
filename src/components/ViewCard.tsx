@@ -20,7 +20,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
           <h2 className="text-lg font-semibold text-gray-800">Product Details</h2>
           <button
             onClick={closePopup}
-            className="text-gray-600 hover:text-gray-800 transition"
+            className="text-gray-600 hover:text-gray-800 transition rounded-lg"
           >
             ✖
           </button>
