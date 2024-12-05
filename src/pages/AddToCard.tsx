@@ -29,10 +29,6 @@ const AddToCard = () => {
           )}
         </div>
       </div>
-      <div className="mt-4 flex justify-between">
-          <h2 className="text-2xl font-semibold mb-4">Total:</h2>
-          <h2 className="text-2xl font-semibold mb-4">${getTotalPrice()}</h2>
-        </div>
     </div>
   )
 }
