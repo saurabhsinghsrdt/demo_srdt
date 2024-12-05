@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProductsResponse } from "../types/Type";
 
-export const productsLoader = createAsyncThunk<ProductsResponse, void>("user/fetchData", async () => {
+export const productsLoader:any = createAsyncThunk<ProductsResponse, void>("user/fetchData", async () => {
   const response = await fetch("https://dummyjson.com/products");
   console.log(response, "yyyyyyyyyyyyyy");
   if (!response.ok) {
