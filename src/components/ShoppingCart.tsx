@@ -1,5 +1,7 @@
-// src/components/ShoppingCart.tsx
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart } from "../store/CartReducer";
+import ViewCard from "./ViewCard";
 
 // Define the Product type
 interface Product {
@@ -9,66 +11,68 @@ interface Product {
   img: string;
 }
 
-interface ShoppingCartProps {
-  product: any;
-}
 
-const ShoppingCart: React.FC<ShoppingCartProps> = ({ product }) => {
-  const [cart, setCart] = useState<Product[]>([]);
+const ShoppingCart: React.FC<{ product: any, addToCard:number }> = ({ product,addToCard }) => {
 
-  // Sample product list with images
-  //   const products: Product[] = [
-  //     { id: 1, name: "Product 1", price: 25, img: "https://via.placeholder.com/150" },
-  //     { id: 2, name: "Product 2", price: 35, img: "https://via.placeholder.com/150" },
-  //     { id: 3, name: "Product 3", price: 45, img: "https://via.placeholder.com/150" }
-  //   ];
+  const dispatch = useDispatch();
 
-  // Function to add a product to the cart
-  const addToCart = (product: Product): void => {
-    setCart([...cart, product]);
+  // Handle Add to Cart
+  const handleAddToCart = (product: Product) => {
+    dispatch(addToCart(product)); // Dispatch the action to add the product to the cart
   };
 
-  // Function to remove a product from the cart
-  const removeFromCart = (id: number): void => {
-    setCart(cart.filter((item) => item.id !== id));
-  };
+    // Handle Remove from Cart
+    const handleRemoveFromCart = (productId: number) => {
+      dispatch(removeFromCart(productId)); // Dispatch the action to remove the product from the cart
+    };
 
-  // Calculate total price
-  const getTotalPrice = (): number => {
-    return cart.reduce((total, item) => total + item.price, 0);
-  };
-
-
+  const [productDetails, setProductDetails] = useState<object>({});
+  const [viewProduct, setViewProduct] = useState<boolean>(false);
 
   return (
-    <div className="flex justify-center items-start p-4">
+    <div className="py-4">
       {/* Product List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        <div key={product.id} className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl">
-          <img src={product.thumbnail} alt={product.name} className="w-full h-32 object-cover rounded-lg mb-4" />
-          <h3 className="text-xl font-semibold">{product.name}</h3>
+      <div className="flex flex-wrap justify-center gap-4">
+        <div
+          key={product.id}
+          className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl"
+        >
+          <img
+            src={product.thumbnail}
+            alt={product.brand}
+            className="w-full h-32 object-cover rounded-lg mb-4"
+          />
+          <h3 className="text-xl font-semibold">{product.brand || "No Name"
+          }</h3>
           <p className="text-gray-500">${product.price}</p>
-          <div
-            className="flex flex-wrap justify-center items-center gap-5"
+          <div className="flex flex-col gap-5"
           >
+            {addToCard === 1 ? 
+            (
             <button
-              onClick={() => addToCart(product)}
-              className="w-40 h-12 mt-4 bg-black text-white rounded-full hover:bg-blue-600"
+            onClick={() => handleRemoveFromCart(product.id)}
+             className="w-40 h-12 bg-black text-white rounded-full hover:bg-blue-600">
+              Remove
+            </button>
+            ): (addToCard === 2 ?
+              <div className="flex gap-x-4">
+            <button
+            onClick={()=> {setViewProduct(true),setProductDetails(product)}}
+            className="text-sm bg-black text-white rounded-full hover:bg-blue-600">
+              View
+            </button>
+            <button
+              onClick={() => handleAddToCart(product)}
+              className="text-sm bg-black text-white rounded-full hover:bg-blue-600"
             >
               Add to Cart
             </button>
-            <button
-              className="w-40 h-12 mt-4 bg-black text-white rounded-full hover:bg-blue-600"
-            >
-              View
-            </button>
+            </div>: null
+            )}
           </div>
-
-
         </div>
       </div>
-
-      {/* Shopping Cart */}
+      {viewProduct && <ViewCard product={productDetails} closePopup={()=> setViewProduct(false)}/>}
     </div>
   );
 };

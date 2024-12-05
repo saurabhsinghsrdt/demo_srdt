@@ -1,46 +1,38 @@
-import React, { useState } from 'react'
+import {useSelector } from 'react-redux';
+import ShoppingCart from '../components/ShoppingCart';
 
 const AddToCard = () => {
 
+  const cartItems = useSelector((state: any) => state.cart.items);
 
-  // Function to remove a product from the cart
-  // const removeFromCart = (id: number): void => {
-  //   setCart(cart.filter((item) => item.id !== id));
-  // };
-
-  // Calculate total price
-  // const getTotalPrice = (): number => {
-  //   return cart.reduce((total, item) => total + item.price, 0);
-  // };
+  // Calculate total price of cart
+  const getTotalPrice = (): number => {
+    return cartItems.reduce((total:any, item:any) => total + item.price, 0);
+  };
 
 
   return (
     <div>
-        <div className="ml-8 p-4 bg-gray-100 rounded-lg w-80">
+        <div className="p-4 bg-gray-100 rounded-lg w-[100%]">
         <h2 className="text-2xl font-semibold mb-4">Shopping Cart</h2>
-        {/* <div className="space-y-4">
-          {cart.length > 0 ? (
-            cart.map((item) => (
-              <div key={item.id} className="flex justify-between items-center">
-                <span>{item.name}</span>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="text-red-500 hover:text-red-600"
-                >
-                  Remove
-                </button>
-              </div>
+        <div className="mt-4 flex">
+          <h2 className='mb-4'>Total: </h2>
+          <h2>${getTotalPrice()}</h2>
+        </div>
+        <div className="flex gap-5 flex-wrap">
+          {cartItems.length > 0 ? (
+            cartItems.map((item:any) => (
+                <ShoppingCart product={item} addToCard={1}/>
             ))
           ) : (
             <p>Your cart is empty</p>
           )}
-        </div> */}
-
-        <div className="mt-4 flex justify-between">
-          <span>Total:</span>
-          {/* <span>${getTotalPrice()}</span> */}
         </div>
       </div>
+      <div className="mt-4 flex justify-between">
+          <span>Total:</span>
+          <span>${getTotalPrice()}</span>
+        </div>
     </div>
   )
 }

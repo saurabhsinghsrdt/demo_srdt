@@ -26,13 +26,15 @@ const Product = () => {
   }
 
   return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "20px", justifyContent: "space-between" }}>
+    <div className="mx-auto px-2">
+      <div className="w-full flex flex-row flex-wrap justify-center gap-x-4">
       {data?.products && !loading &&
         data?.products?.map((item: any) => {
           return (
-            <ShoppingCart product={item}/>
+            <ShoppingCart product={item} addToCard={2}/>
           );
         })}
+    </div>
     </div>
   );
 };
