@@ -67,7 +67,7 @@ const Navbar = () => {
               <Link className="nav-link text-white hover:text-gray-400" to="/product">
                 Product
               </Link>
-              <Link className="nav-link text-white hover:text-gray-400" to="/logout">
+              <Link className="nav-link text-white hover:text-gray-400" to="/login" onClick={()=> localStorage.clear()}>
                 Log Out
               </Link>
             </div>
