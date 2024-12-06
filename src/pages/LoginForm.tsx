@@ -2,12 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-
-// Define the shape of the form data
-interface LoginFormValues {
-    email: string;
-    password: string;
-}
+import { LoginFormValues } from '../types/Type';
 
 // Validation schema using Yup
 const validationSchema = Yup.object({
@@ -31,7 +26,7 @@ const LoginForm: React.FC = () => {
     };
 
     // Form submission handler
-    const onSubmit = (values: LoginFormValues) => {debugger
+    const onSubmit = (values: LoginFormValues) => {
         console.log('Form submitted with:', values);
         if(values.email === "saurabh@gmail.com" && values.password === "12345678"){
             localStorage.setItem("email",values.email);

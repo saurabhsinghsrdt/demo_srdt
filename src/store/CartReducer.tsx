@@ -1,17 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-// Define the Product type
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-}
-
-// Define the state for the cart
-interface CartState {
-  items: Product[];
-}
+import { CartState, Product } from "../types/Type";
 
 const initialState: CartState = {
   items: [],

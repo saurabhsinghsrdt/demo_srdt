@@ -3,14 +3,7 @@ import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../store/CartReducer";
 import ViewCard from "./ViewCard";
-
-// Define the Product type
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-}
+import { Product } from "../types/Type";
 
 const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
   product,

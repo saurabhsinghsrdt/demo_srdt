@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { productsLoader } from "./store/userSlice.tsx";
-import RootLayout from "./pages/RootLayOut.tsx";
-import About from "./pages/About.tsx";
-import Product from "./pages/Product.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
-import AddToCard from "./pages/AddToCard.tsx";
-import LoginForm from "./pages/LoginForm.tsx";
+import { productsLoader } from "../store/userSlice.tsx";
+import RootLayout from "../pages/RootLayOut.tsx";
+import About from "../pages/About.tsx";
+import Product from "../pages/Product.tsx";
+import Dashboard from "../pages/Dashboard.tsx";
+import AddToCard from "../pages/AddToCard.tsx";
+import LoginForm from "../pages/LoginForm.tsx";
 
 const isAuthenticated = (): boolean => {
   return !!localStorage.getItem("email");
