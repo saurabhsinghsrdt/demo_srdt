@@ -41,14 +41,14 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
         </div>
 
         {/* Footer Section */}
-        <div className="p-3 border-t flex justify-end">
+        {/* <div className="p-3 border-t flex justify-end">
           <button
             onClick={closePopup}
             className="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200"
           >
             Close
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
