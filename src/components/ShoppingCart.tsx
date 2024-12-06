@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import { addToCart, removeFromCart } from "../store/CartReducer";
 import ViewCard from "./ViewCard";
@@ -17,18 +18,34 @@ const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
 }) => {
   const dispatch = useDispatch();
 
+  // State for product details and modal visibility
+  const [productDetails, setProductDetails] = useState<object>({});
+  const [viewProduct, setViewProduct] = useState<boolean>(false);
+
   // Handle Add to Cart
   const handleAddToCart = (product: Product) => {
-    dispatch(addToCart(product)); // Dispatch the action to add the product to the cart
+    dispatch(addToCart(product));
   };
 
   // Handle Remove from Cart
   const handleRemoveFromCart = (productId: number) => {
-    dispatch(removeFromCart(productId)); // Dispatch the action to remove the product from the cart
+    dispatch(removeFromCart(productId));
   };
 
-  const [productDetails, setProductDetails] = useState<object>({});
-  const [viewProduct, setViewProduct] = useState<boolean>(false);
+  // Modal content for ViewCard
+  const modalContent = viewProduct && (
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      onClick={() => setViewProduct(false)} // Close popup on outside click
+    >
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md">
+        <ViewCard
+          product={productDetails}
+          closePopup={() => setViewProduct(false)}
+        />
+      </div>
+    </div>
+  );
 
   return (
     <div className="py-4">
@@ -78,23 +95,8 @@ const ShoppingCart: React.FC<{ product: any; addToCard: number }> = ({
         </div>
       </div>
 
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50
-              transition-all duration-300 ease-in-out transform ${viewProduct
-            ? "opacity-100 scale-100"
-            : "opacity-0 scale-75 pointer-events-none"
-          }`}
-      >
-        {viewProduct && (
-          <ViewCard
-            product={productDetails}
-            closePopup={() => setViewProduct(false)}
-          />
-        )}
-      </div>
-
-
-
+      {/* Render modal content in #modal_root */}
+      {ReactDOM.createPortal(modalContent, document.getElementById("modal_root")!)}
     </div>
   );
 };

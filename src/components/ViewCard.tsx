@@ -12,27 +12,28 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
     >
       {/* Popup Container */}
       <div
-        className="bg-white w-full max-w-lg sm:max-w-xl h-auto sm:h-auto max-h-[80%] sm:max-h-[90%] sm:rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 ease-out sm:scale-100 sm:opacity-100 scale-75 opacity-100"
+        className="bg-white w-[90%] max-w-xs sm:max-w-sm md:max-w-md h-auto max-h-[60vh] sm:max-h-[70vh] rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 ease-out"
         onClick={(e) => e.stopPropagation()} // Prevent click inside from closing
       >
         {/* Header Section */}
-        <div className="p-4 border-b flex justify-between items-center">
-          <h2 className="text-lg font-semibold text-gray-800">Product Details</h2>
+        <div className="p-3 border-b flex justify-between items-center">
+          <h2 className="text-sm font-medium text-gray-800">Product Details</h2>
           <button
             onClick={closePopup}
-            className="text-gray-600 hover:text-gray-800 transition rounded-lg"
+            className="text-gray-600 hover:text-gray-800 transition rounded-lg text-sm"
           >
             ✖
           </button>
         </div>
 
         {/* Content Section */}
-        <div className="p-6 overflow-y-auto max-h-[60vh]">
+        <div className="p-3 overflow-y-auto max-h-[50vh] sm:max-h-[60vh]">
+          {/* ShoppingCart Section */}
           <ShoppingCart product={product} addToCard={3} />
 
           {/* Description Section */}
           {product?.description && (
-            <div className="text-sm text-gray-700 mt-4">
+            <div className="text-xs text-gray-700 mt-2">
               <h3 className="font-medium text-gray-800">Description:</h3>
               <p>{product?.description}</p>
             </div>
@@ -40,10 +41,10 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
         </div>
 
         {/* Footer Section */}
-        <div className="p-4 border-t flex justify-end">
+        <div className="p-3 border-t flex justify-end">
           <button
             onClick={closePopup}
-            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+            className="px-3 py-1 bg-gray-100 text-gray-700 rounded-md text-sm hover:bg-gray-200"
           >
             Close
           </button>
