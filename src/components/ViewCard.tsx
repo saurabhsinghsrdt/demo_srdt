@@ -33,7 +33,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
     >
       {/* Popup Container */}
       <div
-        className="bg-white w-[95%] sm:w-[85%] md:w-[70%] lg:w-[50%] xl:w-[40%] h-auto max-h-[80vh] rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 ease-out"
+        className="bg-white w-[80%] sm:w-[85%] md:w-[70%] lg:w-[50%] xl:w-[40%] h-auto max-h-[80vh] rounded-lg shadow-lg overflow-hidden transform transition-all duration-300 ease-out"
         onClick={(e) => e.stopPropagation()} // Prevent click inside from closing
       >
         {/* Header Section */}
@@ -148,7 +148,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
                   </div>
 
                   {/* Submit and Cancel Buttons */}
-                  <div className="flex justify-end space-x-2 mt-4">
+                  <div className="flex justify-end space-x-2 mt-4 mb-4">
                     <button
                       type="button"
                       onClick={() => {
@@ -171,7 +171,7 @@ const ViewCard: React.FC<{ product: any; closePopup: () => void }> = ({
               )}
             </Formik>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-4 mb-4">
               {/* Thumbnail Display */}
               {product?.thumbnail && (
                 <div>

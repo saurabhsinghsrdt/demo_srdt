@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { IoIosLogOut } from "react-icons/io";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -67,8 +68,12 @@ const Navbar = () => {
               <Link className="nav-link text-white hover:text-gray-400" to="/product">
                 Product
               </Link>
-              <Link className="nav-link text-white hover:text-gray-400" to="/login" onClick={()=> localStorage.clear()}>
-                Log Out
+              <Link
+                className="w-10 h-10 p-2 nav-link text-white hover:text-gray-400 mr-4 md:mr-8 lg:mr-12"
+                to="/login"
+                onClick={() => localStorage.clear()}
+              >
+                <IoIosLogOut className="w-6 h-6" />
               </Link>
             </div>
           </div>
